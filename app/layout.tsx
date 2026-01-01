@@ -12,23 +12,19 @@ const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200"
 export const metadata: Metadata = {
   title: "Pirate's Dual - Coming Soon",
   description: "A thrilling pirate duel game. Wishlist on Steam now!",
-  generator: "v0.app",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "/heads.png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "/heads.png",
         media: "(prefers-color-scheme: dark)",
       },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+
     ],
-    apple: "/apple-icon.png",
+    apple: "/heads.png",
   },
 }
 
