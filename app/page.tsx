@@ -248,36 +248,62 @@ export default function HomePage() {
       </section>
 
       {/* ===== ARTIST COMMUNITY SECTION ===== */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative overflow-hidden border-2 border-[#FBBF24]/30 bg-gradient-to-br from-card via-card to-[#FBBF24]/5 p-8 md:p-16">
-            {/* Decorative corner elements */}
-            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#FBBF24]" />
-            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#FBBF24]" />
+      <section className="py-24 px-4 relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-[#FBBF24]/5 to-purple-900/10" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FBBF24]/5 rounded-full blur-3xl" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-6xl mx-auto">
+          {/* Section header */}
+          <div className="text-center mb-12 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-purple-500/20 to-[#FBBF24]/20 text-[#FBBF24] border border-[#FBBF24]/30">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+              </svg>
+              Calling All Artists
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+              Join Our <span className="gradient-text">Creative Crew</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Your talent can shape the world of Pirate&apos;s Dual. Join our artist community
+              and leave your mark on the game.
+            </p>
+          </div>
+
+          <div className="relative border-2 border-purple-500/30 bg-gradient-to-br from-[#0a0e17] via-purple-950/20 to-[#0a0e17] p-8 md:p-12 overflow-hidden">
+            {/* Decorative corner elements */}
+            <div className="absolute top-0 left-0 w-20 h-20 border-t-3 border-l-3 border-[#FBBF24]" />
+            <div className="absolute top-0 right-0 w-20 h-20 border-t-3 border-r-3 border-[#FBBF24]" />
+            <div className="absolute bottom-0 left-0 w-20 h-20 border-b-3 border-l-3 border-[#FBBF24]" />
+            <div className="absolute bottom-0 right-0 w-20 h-20 border-b-3 border-r-3 border-[#FBBF24]" />
+
+            {/* Diagonal shimmer */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="w-full h-full" style={{ background: "repeating-linear-gradient(-45deg, #FBBF24, #FBBF24 1px, transparent 1px, transparent 30px)" }} />
+            </div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
-                <div className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-widest bg-[#FBBF24]/10 text-[#FBBF24] border border-[#FBBF24]/30">
-                  For Artists
-                </div>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight">
-                  Join Our <span className="gradient-text">Creative Crew</span>
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Are you an artist? Join the Pirate&apos;s Dual community! We welcome
-                  talented creators to contribute art, participate in design tournaments,
-                  and win amazing prizes. Your art could become part of the game!
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Are you an artist? We welcome talented creators to contribute art,
+                  participate in design tournaments, and win amazing prizes.
+                  Your art could become part of the game!
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { label: "Art Tournaments", desc: "Compete with other artists" },
-                    { label: "Win Prizes", desc: "Cash rewards & in-game items" },
-                    { label: "Get Featured", desc: "Your art in the game" },
-                    { label: "Community", desc: "Connect with fellow artists" },
+                    { icon: "🎨", label: "Art Tournaments", desc: "Compete with other artists" },
+                    { icon: "💰", label: "Win Prizes", desc: "Cash rewards & in-game items" },
+                    { icon: "⭐", label: "Get Featured", desc: "Your art in the game" },
+                    { icon: "🤝", label: "Community", desc: "Connect with fellow artists" },
                   ].map((item, i) => (
-                    <div key={i} className="p-4 bg-background/50 border border-border">
-                      <h4 className="text-sm font-bold uppercase text-[#FBBF24]">{item.label}</h4>
-                      <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+                    <div key={i} className="group p-4 bg-purple-950/30 border border-purple-500/20 hover:border-[#FBBF24]/40 transition-all">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-lg">{item.icon}</span>
+                        <h4 className="text-sm font-bold uppercase text-[#FBBF24]">{item.label}</h4>
+                      </div>
+                      <p className="text-xs text-muted-foreground">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -285,7 +311,7 @@ export default function HomePage() {
                   href="https://art.piratesdual.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#f59e0b] transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#f59e0b] transition-all hover:scale-105"
                 >
                   Join the Community
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -293,8 +319,9 @@ export default function HomePage() {
                   </svg>
                 </a>
               </div>
-              <div className="relative w-full max-w-sm mx-auto aspect-[3/4]">
-                <div className="absolute inset-4 border-2 border-[#FBBF24]/20" />
+              <div className="relative w-full max-w-sm mx-auto aspect-[3/4] group">
+                <div className="absolute -inset-2 border-2 border-[#FBBF24]/10 group-hover:border-[#FBBF24]/30 transition-colors" />
+                <div className="absolute -inset-4 border border-purple-500/10 group-hover:border-purple-500/20 transition-colors" />
                 <Image
                   src="/vertical-cover.png"
                   alt="Join our creative community"
