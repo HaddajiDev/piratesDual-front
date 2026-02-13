@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { TournamentWaitlist } from "@/components/tournament-waitlist"
 
 export default function HomePage() {
   return (
@@ -162,6 +163,85 @@ export default function HomePage() {
                 fill
                 className="object-cover"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== GAME TOURNAMENT SECTION ===== */}
+      <section className="py-24 px-4 relative overflow-hidden">
+        {/* Animated background glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FBBF24]/5 via-transparent to-[#FBBF24]/5" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FBBF24]/5 rounded-full blur-3xl animate-pulse" />
+
+        <div className="relative max-w-5xl mx-auto">
+          <div className="relative border-2 border-[#FBBF24] bg-gradient-to-br from-[#0a0e17] via-[#111827] to-[#0a0e17] p-8 md:p-16 overflow-hidden">
+            {/* Corner accents */}
+            <div className="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-[#FBBF24]" />
+            <div className="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-[#FBBF24]" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 border-b-4 border-l-4 border-[#FBBF24]" />
+            <div className="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-[#FBBF24]" />
+
+            {/* Diagonal stripes decoration */}
+            <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
+              <div className="w-full h-full" style={{ background: "repeating-linear-gradient(45deg, #FBBF24, #FBBF24 2px, transparent 2px, transparent 20px)" }} />
+            </div>
+
+            <div className="relative z-10 text-center space-y-8">
+              {/* Coming Soon badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-[#FBBF24] text-black animate-pulse">
+                <span className="w-2 h-2 bg-black rounded-full" />
+                Coming Soon
+              </div>
+
+              {/* Trophy icon */}
+              <div className="flex justify-center">
+                <div className="w-20 h-20 md:w-24 md:h-24 border-2 border-[#FBBF24] bg-[#FBBF24]/10 flex items-center justify-center">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-[#FBBF24]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.003 6.003 0 01-3.77 1.522m0 0a6.003 6.003 0 01-3.77-1.522" />
+                  </svg>
+                </div>
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+                Game <span className="gradient-text">Tournaments</span>
+              </h2>
+
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Compete against the best pirates on the seas and win real money prizes.
+                Prove your skills in intense ship battles and climb the tournament ranks.
+              </p>
+
+              {/* Prize highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
+                <div className="p-6 border border-[#FBBF24]/30 bg-[#FBBF24]/5">
+                  <div className="text-3xl md:text-4xl font-black text-[#FBBF24]">$$$</div>
+                  <p className="text-sm text-muted-foreground mt-2 uppercase font-bold tracking-wide">Cash Prizes</p>
+                </div>
+                <div className="p-6 border border-[#FBBF24]/30 bg-[#FBBF24]/5">
+                  <div className="text-3xl md:text-4xl font-black text-[#FBBF24]">1v1</div>
+                  <p className="text-sm text-muted-foreground mt-2 uppercase font-bold tracking-wide">Competitive Duels</p>
+                </div>
+                <div className="p-6 border border-[#FBBF24]/30 bg-[#FBBF24]/5">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-[#FBBF24] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                  </svg>
+                  <p className="text-sm text-muted-foreground mt-2 uppercase font-bold tracking-wide">Global Rankings</p>
+                </div>
+              </div>
+
+              {/* Waitlist signup */}
+              <div className="pt-4 space-y-4">
+                <p className="text-sm text-[#FBBF24] font-bold uppercase tracking-wider">
+                  Join the waitlist — be first to compete
+                </p>
+                <div className="relative">
+                  <TournamentWaitlist />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Tournament platform is under construction — we&apos;ll notify you when it launches!
+                </p>
+              </div>
             </div>
           </div>
         </div>
