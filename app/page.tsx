@@ -336,20 +336,29 @@ export default function HomePage() {
       </section>
 
       {/* ===== DONORS SECTION ===== */}
-      <section className="py-16 px-4 bg-card/30">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#FBBF24] border border-[#FBBF24]/30 bg-[#FBBF24]/5">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+      <section className="py-24 px-4 relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FBBF24]/3 via-transparent to-[#FBBF24]/3" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#FBBF24]/3 blur-3xl rounded-full" />
+
+        <div className="relative max-w-5xl mx-auto space-y-12">
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#FBBF24] border border-[#FBBF24]/30 bg-[#FBBF24]/5">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
               </svg>
-              Our Supporters
+              Hall of Donors
             </div>
-            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight">
-              Thank You to Our <span className="gradient-text">Donors</span>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+              Our <span className="gradient-text">Legendary</span> Supporters
             </h2>
-            <p className="text-sm text-muted-foreground">These pirates helped make this game possible.</p>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              These pirates believed in Pirate&apos;s Dual before anyone else.
+              Their support makes this game possible.
+            </p>
           </div>
+
           <DonorsSection />
         </div>
       </section>
