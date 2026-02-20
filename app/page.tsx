@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { TournamentWaitlist } from "@/components/tournament-waitlist"
+import { DonorsSection } from "@/components/donors-section"
 
 export default function HomePage() {
   return (
@@ -331,6 +332,25 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ===== DONORS SECTION ===== */}
+      <section className="py-16 px-4 bg-card/30">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#FBBF24] border border-[#FBBF24]/30 bg-[#FBBF24]/5">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+              Our Supporters
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight">
+              Thank You to Our <span className="gradient-text">Donors</span>
+            </h2>
+            <p className="text-sm text-muted-foreground">These pirates helped make this game possible.</p>
+          </div>
+          <DonorsSection />
         </div>
       </section>
 

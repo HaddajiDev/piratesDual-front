@@ -5,8 +5,8 @@ import { createPortal } from "react-dom"
 import Image from "next/image"
 
 const WALLET = "0xF60790fAe69B039614d6225049Cd8644F4F5db1A"
+const API = "https://studio-core.piratesdual.com/api"
 
-// ERC-20 token contracts per network
 const TOKENS = {
   USDT: {
     label: "USDT",
@@ -57,13 +57,9 @@ type Step = "idle" | "connecting" | "sending" | "success" | "error"
 
 const USD_PRESETS = [1, 5, 10, 25]
 
-// Encode ERC-20 transfer(address,uint256) call data
 function encodeTransfer(to: string, amountUnits: bigint): string {
-  // transfer selector = keccak256("transfer(address,uint256)")[0..3] = 0xa9059cbb
   const selector = "a9059cbb"
-  // pad address to 32 bytes
   const paddedTo = to.toLowerCase().replace("0x", "").padStart(64, "0")
-  // pad amount to 32 bytes hex
   const paddedAmount = amountUnits.toString(16).padStart(64, "0")
   return "0x" + selector + paddedTo + paddedAmount
 }
@@ -83,6 +79,9 @@ export function DonateModal() {
   const [token, setToken] = useState<Token>("USDC")
   const [selectedUsd, setSelectedUsd] = useState<number>(5)
   const [customUsd, setCustomUsd] = useState("")
+  const [anonymous, setAnonymous] = useState(false)
+  const [donorName, setDonorName] = useState("")
+  const [donorEmail, setDonorEmail] = useState("")
   const [step, setStep] = useState<Step>("idle")
   const [account, setAccount] = useState<string | null>(null)
   const [txHash, setTxHash] = useState<string | null>(null)
@@ -114,7 +113,6 @@ export function DonateModal() {
   const activeUsd = parseFloat(customUsd) > 0 ? parseFloat(customUsd) : selectedUsd
   const tok = TOKENS[token]
   const decimals = tok.decimals[network]
-  // USDT/USDC are 1:1 with USD, so amount in token units = usd * 10^decimals
   const tokenUnits = BigInt(Math.round(activeUsd * 10 ** decimals))
   const tokenContract = tok.address[network]
   const net = NETWORKS[network]
@@ -131,12 +129,10 @@ export function DonateModal() {
     setErrorMsg("")
 
     try {
-      // 1. Connect wallet
       const accounts = await eth.request({ method: "eth_requestAccounts" }) as string[]
       const from = accounts[0]
       setAccount(from)
 
-      // 2. Switch network
       try {
         await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: net.chainId }] })
       } catch (switchErr: unknown) {
@@ -145,21 +141,31 @@ export function DonateModal() {
         } else throw switchErr
       }
 
-      // 3. Send ERC-20 transfer
       setStep("sending")
       const data = encodeTransfer(WALLET, tokenUnits)
       const hash = await eth.request({
         method: "eth_sendTransaction",
-        params: [{
-          from,
-          to: tokenContract,  // call the token contract, not WALLET directly
-          data,               // encoded transfer(WALLET, amount)
-          gas: "0x186A0",     // 100000 gas — enough for ERC-20 transfer
-        }],
+        params: [{ from, to: tokenContract, data, gas: "0x186A0" }],
       }) as string
 
       setTxHash(hash)
       setStep("success")
+
+      // Record donor in backend
+      await fetch(`${API}/donators`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: anonymous ? null : (donorName.trim() || null),
+          email: anonymous ? null : (donorEmail.trim() || null),
+          amount: activeUsd,
+          token,
+          network,
+          txHash: hash,
+          walletAddress: from,
+        }),
+      }).catch(() => {/* silently fail — tx already went through */})
+
     } catch (err: unknown) {
       setErrorMsg(
         (err as { code?: number }).code === 4001
@@ -174,14 +180,15 @@ export function DonateModal() {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setOpen(false)} />
 
-      <div className="relative z-10 w-full max-w-md border-2 border-[#FBBF24] bg-[#0a0e17] shadow-2xl overflow-hidden">
+      <div className="relative z-10 w-full max-w-md border-2 border-[#FBBF24] bg-[#0a0e17] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#FBBF24]" />
-        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#FBBF24]" />
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FBBF24]" />
-        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#FBBF24]" />
+        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#FBBF24] pointer-events-none z-10" />
+        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#FBBF24] pointer-events-none z-10" />
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FBBF24] pointer-events-none z-10" />
+        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#FBBF24] pointer-events-none z-10" />
 
-        <div className="p-8 space-y-5">
+        {/* Scrollable content */}
+        <div className="overflow-y-auto p-8 space-y-5">
           {/* Header */}
           <div className="flex items-start justify-between">
             <div>
@@ -190,7 +197,7 @@ export function DonateModal() {
               </h2>
               <p className="text-xs text-muted-foreground mt-0.5">Every donation helps us build a better game ⚓</p>
             </div>
-            <button onClick={() => setOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors p-1">
+            <button onClick={() => setOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors p-1 flex-shrink-0">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -210,6 +217,9 @@ export function DonateModal() {
                 <p className="text-xs text-muted-foreground mt-1">
                   Donated <strong className="text-foreground">${activeUsd} {token}</strong> — thank you! 🏴‍☠️
                 </p>
+                {!anonymous && donorName && (
+                  <p className="text-xs text-[#FBBF24] mt-1">You&apos;ll appear in our donors list as <strong>{donorName}</strong></p>
+                )}
               </div>
               <div className="p-3 bg-card border border-green-500/20 text-left space-y-1">
                 <p className="text-xs text-muted-foreground uppercase font-bold tracking-wide">Tx Hash</p>
@@ -237,14 +247,11 @@ export function DonateModal() {
                 <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Network</p>
                 <div className="grid grid-cols-2 gap-2">
                   {(Object.keys(NETWORKS) as Network[]).map((n) => (
-                    <button
-                      key={n}
-                      onClick={() => { setNetwork(n); reset() }}
+                    <button key={n} onClick={() => { setNetwork(n); reset() }}
                       className="p-3 border text-xs font-bold uppercase tracking-wide transition-all flex items-center gap-2"
                       style={network === n
                         ? { borderColor: NETWORKS[n].color, backgroundColor: NETWORKS[n].color + "18", color: NETWORKS[n].color }
-                        : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }
-                      }
+                        : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }}
                     >
                       <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: NETWORKS[n].color }} />
                       {NETWORKS[n].label}
@@ -258,14 +265,11 @@ export function DonateModal() {
                 <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Token</p>
                 <div className="grid grid-cols-2 gap-2">
                   {(Object.keys(TOKENS) as Token[]).map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => { setToken(t); reset() }}
+                    <button key={t} onClick={() => { setToken(t); reset() }}
                       className="p-3 border text-xs font-bold uppercase tracking-wide transition-all flex items-center gap-2"
                       style={token === t
                         ? { borderColor: TOKENS[t].color, backgroundColor: TOKENS[t].color + "18", color: TOKENS[t].color }
-                        : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }
-                      }
+                        : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }}
                     >
                       <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: TOKENS[t].color }} />
                       {TOKENS[t].label}
@@ -275,19 +279,16 @@ export function DonateModal() {
                 </div>
               </div>
 
-              {/* USD amount presets */}
+              {/* Amount */}
               <div className="space-y-2">
                 <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Amount</p>
                 <div className="grid grid-cols-4 gap-2">
                   {USD_PRESETS.map((usd) => (
-                    <button
-                      key={usd}
-                      onClick={() => { setSelectedUsd(usd); setCustomUsd("") }}
+                    <button key={usd} onClick={() => { setSelectedUsd(usd); setCustomUsd("") }}
                       className="py-3 text-sm font-black border transition-all"
                       style={selectedUsd === usd && !customUsd
                         ? { borderColor: "#FBBF24", backgroundColor: "#FBBF2418", color: "#FBBF24" }
-                        : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)" }
-                      }
+                        : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)" }}
                     >
                       ${usd}
                     </button>
@@ -295,23 +296,62 @@ export function DonateModal() {
                 </div>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-bold">$</span>
-                  <input
-                    type="number"
-                    min="0.01"
-                    step="1"
-                    placeholder="Custom amount"
-                    value={customUsd}
-                    onChange={(e) => setCustomUsd(e.target.value)}
+                  <input type="number" min="0.01" step="1" placeholder="Custom amount"
+                    value={customUsd} onChange={(e) => setCustomUsd(e.target.value)}
                     className="w-full pl-7 pr-3 py-2 bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FBBF24] focus:outline-none transition-colors"
                   />
                 </div>
-
-                {/* Summary */}
                 <div className="flex items-center gap-2 text-xs text-muted-foreground bg-card/50 border border-border px-3 py-2">
                   <span>You&apos;re sending</span>
                   <strong className="text-[#FBBF24]">${activeUsd.toFixed(2)} {token}</strong>
                   <span className="ml-auto opacity-60">on {net.label}</span>
                 </div>
+              </div>
+
+              {/* Identity — anonymous by default */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Identity</p>
+                  <button
+                    onClick={() => setAnonymous(!anonymous)}
+                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${anonymous ? "bg-[#FBBF24]/30" : "bg-[#FBBF24]"}`}
+                  >
+                    <span className={`inline-block h-3.5 w-3.5 rounded-full bg-white transition-transform ${anonymous ? "translate-x-0.5" : "translate-x-[18px]"}`} />
+                  </button>
+                </div>
+
+                {/* Anonymous notice — always visible */}
+                <div className={`flex items-start gap-2 px-3 py-2.5 border text-xs transition-all ${anonymous ? "border-[#FBBF24]/30 bg-[#FBBF24]/5 text-[#FBBF24]" : "border-border text-muted-foreground"}`}>
+                  <svg className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                  </svg>
+                  {anonymous
+                    ? "Donating anonymously — your name won't appear in the donors list."
+                    : "Your name will appear publicly in the donors list."}
+                </div>
+
+                {/* Name/email fields — shown when not anonymous */}
+                {!anonymous && (
+                  <div className="space-y-2">
+                    <input
+                      type="text"
+                      placeholder="Your name (optional)"
+                      value={donorName}
+                      onChange={(e) => setDonorName(e.target.value)}
+                      maxLength={100}
+                      className="w-full px-3 py-2 bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FBBF24] focus:outline-none transition-colors"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Your email (optional, private)"
+                      value={donorEmail}
+                      onChange={(e) => setDonorEmail(e.target.value)}
+                      maxLength={200}
+                      className="w-full px-3 py-2 bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FBBF24] focus:outline-none transition-colors"
+                    />
+                    <p className="text-[10px] text-muted-foreground">Email is never shown publicly — only used to contact you.</p>
+                  </div>
+                )}
               </div>
 
               {/* Copy address fallback */}
@@ -329,12 +369,10 @@ export function DonateModal() {
                 {copied && <p className="text-xs text-green-400 font-bold">Copied!</p>}
               </div>
 
-              {/* Error */}
               {step === "error" && errorMsg && (
                 <p className="text-xs text-red-400 border border-red-400/20 bg-red-400/5 p-3">{errorMsg}</p>
               )}
 
-              {/* MetaMask CTA */}
               <button
                 onClick={sendDonation}
                 disabled={step === "connecting" || step === "sending" || activeUsd <= 0}
@@ -347,7 +385,7 @@ export function DonateModal() {
                 {(step === "idle" || step === "error") && `Donate $${activeUsd.toFixed(2)} ${token} via MetaMask`}
               </button>
 
-              
+      
             </>
           )}
         </div>
