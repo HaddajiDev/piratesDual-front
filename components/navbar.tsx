@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import { DonateModal } from "@/components/donate-modal"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -39,6 +40,7 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <DonateModal />
             <a
               href="https://store.steampowered.com/app/4214220/Pirates_Dual/"
               target="_blank"
@@ -90,6 +92,9 @@ export function Navbar() {
             >
               Wishlist on Steam
             </a>
+            <div className="flex justify-center mt-2">
+              <DonateModal />
+            </div>
           </div>
         </div>
       )}

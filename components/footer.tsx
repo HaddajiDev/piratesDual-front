@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { DonateModal } from "@/components/donate-modal"
 
 export function Footer() {
   return (
@@ -52,6 +53,7 @@ export function Footer() {
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Pirate&apos;s Dual. All rights reserved.
           </p>
+          <DonateModal />
           <p className="text-xs text-muted-foreground">
             Made with passion for pirates everywhere
           </p>
