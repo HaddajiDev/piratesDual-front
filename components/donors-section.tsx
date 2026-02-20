@@ -20,7 +20,7 @@ export function DonorsSection() {
   useEffect(() => {
     fetch(`${API}/donators`)
       .then((r) => r.json())
-      .then((data) => setDonors(Array.isArray(data) ? data : data.donors ?? []))
+      .then((data) => setDonors(Array.isArray(data) ? data : data.donators ?? []))
       .catch(() => setDonors([]))
       .finally(() => setLoading(false))
   }, [])
