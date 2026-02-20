@@ -173,16 +173,6 @@ export function DonorsSection() {
           })}
         </div>
       )}
-
-      {/* Total */}
-      <div className="flex items-center justify-between px-4 py-3 border border-[#FBBF24]/20 bg-[#FBBF24]/5">
-        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-          Total raised by {donors.length} donor{donors.length !== 1 ? "s" : ""}
-        </span>
-        <span className="text-sm font-black text-[#FBBF24]">
-          ${donors.reduce((sum, d) => sum + Number(d.amount), 0).toFixed(2)}
-        </span>
-      </div>
     </div>
   )
 }
