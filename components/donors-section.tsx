@@ -5,10 +5,11 @@ import { useState, useEffect } from "react"
 const API = "https://studio-core.piratesdual.com/api"
 
 type Donor = {
-  id?: string | number
+  _id?: string
   name?: string | null
+  email?: string | null
   amount: number
-  token: string
+  token?: string
   createdAt?: string
 }
 
@@ -46,7 +47,7 @@ export function DonorsSection() {
     <div className="flex flex-wrap justify-center gap-3">
       {donors.map((donor, i) => (
         <div
-          key={donor.id ?? i}
+          key={donor._id ?? i}
           className="group flex items-center gap-2 px-4 py-2.5 border border-[#FBBF24]/20 bg-[#FBBF24]/5 hover:border-[#FBBF24]/50 hover:bg-[#FBBF24]/10 transition-all"
           style={{
             animation: `fadeSlideIn 0.4s ease forwards`,
