@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { TournamentWaitlist } from "@/components/tournament-waitlist"
 import { DonorsSection } from "@/components/donors-section"
+import { ReleaseCountdown } from "@/components/release-countdown"
 
 export default function HomePage() {
   return (
@@ -64,6 +65,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      
 
       {/* ===== GAME FEATURES SECTION ===== */}
       <section className="py-24 px-4">
@@ -362,6 +365,9 @@ export default function HomePage() {
           <DonorsSection />
         </div>
       </section>
+
+      {/* ===== RELEASE COUNTDOWN SECTION ===== */}
+      <ReleaseCountdown />
 
       {/* ===== CTA SECTION ===== */}
       <section className="py-24 px-4 bg-card/50">
