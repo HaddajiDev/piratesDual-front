@@ -55,7 +55,7 @@ export function Footer() {
           </p>
           <DonateModal />
           <p className="text-xs text-muted-foreground">
-            Made with passion for pirates everywhere
+            
           </p>
         </div>
       </div>
