@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const RELEASE_DATE = new Date("2026-03-19T00:00:00Z")
+const RELEASE_DATE = new Date("2026-03-19T12:00:00Z")
 
 function getTimeLeft() {
   const now = new Date()
