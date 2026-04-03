@@ -42,7 +42,7 @@ export function Footer() {
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Image src="/steam.png" alt="Steam" width={16} height={16} />
-                Wishlist on Steam
+                Play on Steam
               </a>
               <a
                 href="https://www.instagram.com/piratesdual/"

@@ -144,7 +144,7 @@ export default function AboutPage() {
             Be Part of the <span className="gradient-text">Journey</span>
           </h2>
           <p className="text-muted-foreground">
-            Wishlist on Steam to follow our development and be the first to play when we launch.
+            Play now on Steam and join the battle on the high seas.
           </p>
           <a
             href="https://store.steampowered.com/app/4214220/Pirates_Dual/"
@@ -153,7 +153,7 @@ export default function AboutPage() {
             className="inline-flex items-center gap-3 px-8 py-4 text-lg font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#f59e0b] transition-all hover:scale-105 border-2 border-[#FBBF24]"
           >
             <Image src="/steam.png" alt="Steam" width={24} height={24} className="invert" />
-            Wishlist on Steam
+            Play on Steam
           </a>
         </div>
       </section>

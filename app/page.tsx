@@ -47,7 +47,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-3 px-8 py-4 text-lg font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#f59e0b] transition-all border-2 border-[#FBBF24] hover:scale-105"
             >
               <Image src="/steam.png" alt="Steam" width={24} height={24} className="invert" />
-              Wishlist on Steam
+              Play on Steam
             </a>
             <Link
               href="/community"
@@ -376,7 +376,7 @@ export default function HomePage() {
             Ready to <span className="gradient-text">Duel</span>?
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Wishlist Pirate&apos;s Dual on Steam and be the first to know when the game launches.
+            Play Pirate&apos;s Dual on Steam now. Join thousands of pirates already on the seas.
             Join thousands of pirates waiting to set sail.
           </p>
           <a
@@ -386,7 +386,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-3 px-10 py-5 text-xl font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#f59e0b] transition-all hover:scale-105 border-2 border-[#FBBF24]"
           >
             <Image src="/steam.png" alt="Steam" width={28} height={28} className="invert" />
-            Wishlist on Steam Now
+            Play on Steam Now
           </a>
         </div>
       </section>

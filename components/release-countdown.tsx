@@ -116,7 +116,7 @@ export function ReleaseCountdown() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-[#FBBF24] text-[#FBBF24] hover:bg-[#FBBF24] hover:text-black transition-all hover:scale-105"
         >
-          Wishlist Now — Don&apos;t Miss Launch
+          Play Now on Steam
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>

@@ -271,7 +271,7 @@ export default function CommunityPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold uppercase tracking-wider border-2 border-[#FBBF24]/50 text-[#FBBF24] hover:bg-[#FBBF24]/10 transition-all hover:scale-105"
             >
-              Wishlist on Steam
+              Play on Steam
             </a>
           </div>
         </div>

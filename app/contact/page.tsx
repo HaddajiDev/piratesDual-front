@@ -243,7 +243,7 @@ export default function ContactPage() {
                   <Image src="/steam.png" alt="Steam" width={24} height={24} />
                   <div>
                     <p className="text-sm font-bold uppercase">Steam</p>
-                    <p className="text-xs text-muted-foreground">Wishlist & follow</p>
+                    <p className="text-xs text-muted-foreground">Play & follow</p>
                   </div>
                 </a>
               </div>

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: "Pirate's Dual - 2D Pixel Art Ship Battle Game",
     template: "%s | Pirate's Dual",
   },
-  description: "A thrilling 2D pixel art turn-based pirate ship battle game. Outsmart your opponent, fire your cannons, and rule the seas. Wishlist on Steam now!",
+  description: "A thrilling 2D pixel art turn-based pirate ship battle game. Outsmart your opponent, fire your cannons, and rule the seas. Play on Steam now!",
   keywords: [
     "pirate game",
     "pirate's dual",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     url: "https://piratesdual.com",
     siteName: "Pirate's Dual",
     title: "Pirate's Dual - 2D Pixel Art Ship Battle Game",
-    description: "A thrilling 2D pixel art turn-based pirate ship battle game. Outsmart your opponent, fire your cannons, and rule the seas. Wishlist on Steam now!",
+    description: "A thrilling 2D pixel art turn-based pirate ship battle game. Outsmart your opponent, fire your cannons, and rule the seas. Play on Steam now!",
     images: [
       {
         url: "/cover.png",

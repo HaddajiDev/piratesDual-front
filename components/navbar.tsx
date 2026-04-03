@@ -47,7 +47,7 @@ export function Navbar() {
               rel="noopener noreferrer"
               className="px-4 py-2 text-sm font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#FBBF24]/90 transition-all border border-[#FBBF24]"
             >
-              Wishlist on Steam
+              Play on Steam
             </a>
           </div>
 
@@ -90,7 +90,7 @@ export function Navbar() {
               rel="noopener noreferrer"
               className="block text-center px-4 py-2 text-sm font-bold uppercase tracking-wider bg-[#FBBF24] text-black hover:bg-[#FBBF24]/90 transition-all mt-2"
             >
-              Wishlist on Steam
+              Play on Steam
             </a>
             <div className="flex justify-center mt-2">
               <DonateModal />
