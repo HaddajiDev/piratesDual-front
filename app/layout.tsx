@@ -7,7 +7,6 @@ import { Geist_Mono, Geist_Mono as V0_Font_Geist_Mono } from 'next/font/google'
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
-// Initialize fonts
 const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
 
 export const metadata: Metadata = {

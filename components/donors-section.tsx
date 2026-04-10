@@ -13,7 +13,6 @@ type Donor = {
   createdAt?: string
 }
 
-// Deterministic color per name initial
 const AVATAR_COLORS = [
   { bg: "#FBBF24", text: "#000" },
   { bg: "#7C3AED", text: "#fff" },
@@ -45,7 +44,6 @@ export function DonorsSection() {
       .then((r) => r.json())
       .then((data) => {
         const list: Donor[] = Array.isArray(data) ? data : data.donators ?? []
-        // Sort by amount descending so top donors appear first
         list.sort((a, b) => Number(b.amount) - Number(a.amount))
         setDonors(list)
       })
@@ -72,13 +70,11 @@ export function DonorsSection() {
     )
   }
 
-  // Top 3 get featured cards, rest get compact list
   const featured = donors.slice(0, 3)
   const rest = donors.slice(3)
 
   return (
     <div className="space-y-6">
-      {/* Top 3 featured cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {featured.map((donor, i) => {
           const color = getAvatarColor(donor.name)
@@ -95,12 +91,10 @@ export function DonorsSection() {
                 opacity: 0,
               }}
             >
-              {/* Rank glow for #1 */}
               {i === 0 && (
                 <div className="absolute inset-0 bg-gradient-to-br from-[#FBBF24]/5 to-transparent pointer-events-none" />
               )}
 
-              {/* Medal */}
               {medal && (
                 <div className="absolute top-3 right-3 text-lg" title={medal.label}>
                   {medal.icon}
@@ -108,7 +102,6 @@ export function DonorsSection() {
               )}
 
               <div className="relative z-10 space-y-4">
-                {/* Avatar */}
                 <div
                   className="w-12 h-12 flex items-center justify-center text-lg font-black uppercase"
                   style={{ backgroundColor: color.bg, color: color.text }}
@@ -116,7 +109,6 @@ export function DonorsSection() {
                   {donor.name ? donor.name[0] : "?"}
                 </div>
 
-                {/* Name */}
                 <div>
                   <p className="font-black text-sm uppercase tracking-wide text-foreground truncate">
                     {donor.name ?? "Anonymous"}
@@ -124,7 +116,6 @@ export function DonorsSection() {
                   <p className="text-xs text-muted-foreground mt-0.5">Pirate Supporter</p>
                 </div>
 
-                {/* Amount */}
                 <div className="pt-2 border-t border-border">
                   <p className="text-xl font-black" style={{ color: i === 0 ? "#FBBF24" : "#f0f0f0" }}>
                     ${Number(donor.amount).toFixed(2)}
@@ -139,7 +130,6 @@ export function DonorsSection() {
         })}
       </div>
 
-      {/* Rest of donors — compact horizontal list */}
       {rest.length > 0 && (
         <div className="border border-border bg-card/30 divide-y divide-border">
           {rest.map((donor, i) => {

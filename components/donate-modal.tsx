@@ -7,7 +7,6 @@ import Image from "next/image"
 const WALLET = "0xF60790fAe69B039614d6225049Cd8644F4F5db1A"
 const API = "https://studio-core.piratesdual.com/api"
 
-// ── Networks ──────────────────────────────────────────────────────────────────
 const NETWORKS = {
   ethereum: {
     label: "Ethereum",
@@ -90,7 +89,6 @@ const NETWORKS = {
   },
 } as const
 
-// ── Stablecoin addresses ───────────────────────────────────────────────────────
 const STABLECOINS = {
   USDC: {
     label: "USDC",
@@ -124,13 +122,11 @@ const STABLECOINS = {
 
 type Network = keyof typeof NETWORKS
 type StablecoinKey = keyof typeof STABLECOINS
-// token is either a stablecoin key or "NATIVE"
 type TokenKey = StablecoinKey | "NATIVE"
 type Step = "idle" | "connecting" | "sending" | "success" | "error"
 
 const USD_PRESETS = [1, 5, 10, 25]
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
 function encodeTransfer(to: string, amountUnits: bigint): string {
   const selector = "a9059cbb"
   const paddedTo = to.toLowerCase().replace("0x", "").padStart(64, "0")
@@ -152,11 +148,9 @@ function getEthereum(): EthProvider | null {
 function NetworkIcon({ src, size = 16 }: { src: string; size?: number }) {
   const [err, setErr] = useState(false)
   if (err) return <span className="rounded-full flex-shrink-0 inline-block bg-white/20" style={{ width: size, height: size }} />
-  // eslint-disable-next-line @next/next/no-img-element
   return <img src={src} alt="" width={size} height={size} className="rounded-full flex-shrink-0 object-cover" onError={() => setErr(true)} />
 }
 
-// ── Component ─────────────────────────────────────────────────────────────────
 export function DonateModal() {
   const [open, setOpen]           = useState(false)
   const [mounted, setMounted]     = useState(false)
@@ -171,7 +165,6 @@ export function DonateModal() {
   const [txHash, setTxHash]       = useState<string | null>(null)
   const [errorMsg, setErrorMsg]   = useState("")
   const [copied, setCopied]       = useState(false)
-  // native coin prices keyed by geckoId
   const [prices, setPrices]       = useState<Record<string, number>>({})
   const [priceLoading, setPriceLoading] = useState(false)
 
@@ -184,7 +177,6 @@ export function DonateModal() {
     return () => window.removeEventListener("keydown", handler)
   }, [open])
 
-  // Fetch prices for all native coins when modal opens
   useEffect(() => {
     if (!open) return
     const geckoIds = [...new Set(Object.values(NETWORKS).map(n => n.native.geckoId))].join(",")
@@ -196,7 +188,7 @@ export function DonateModal() {
         for (const [id, val] of Object.entries(data)) map[id] = val.usd
         setPrices(map)
       })
-      .catch(() => {/* silently fail — user can still enter amount */})
+      .catch(() => {})
       .finally(() => setPriceLoading(false))
   }, [open])
 
@@ -215,10 +207,8 @@ export function DonateModal() {
   const activeUsd = parseFloat(customUsd) > 0 ? parseFloat(customUsd) : selectedUsd
   const net = NETWORKS[network]
   const nativePrice = prices[net.native.geckoId] ?? 0
-  // native amount needed to cover activeUsd
   const nativeAmount = nativePrice > 0 ? activeUsd / nativePrice : 0
 
-  // label shown on the confirm bar
   const tokenLabel = token === "NATIVE" ? net.native.symbol : token
 
   async function sendDonation() {
@@ -242,7 +232,6 @@ export function DonateModal() {
       let hash: string
 
       if (token === "NATIVE") {
-        // plain ETH/native send
         if (nativeAmount <= 0) throw new Error("Could not fetch price. Please try a stablecoin instead.")
         const weiAmount = BigInt(Math.round(nativeAmount * 1e18))
         hash = await eth.request({
@@ -250,7 +239,6 @@ export function DonateModal() {
           params: [{ from, to: WALLET, value: toHex(weiAmount), gas: "0x5208" }],
         }) as string
       } else {
-        // ERC-20 stablecoin
         const tok = STABLECOINS[token]
         const tokenUnits = BigInt(Math.round(activeUsd * 10 ** tok.decimals))
         const contractAddr = tok.address[network]
@@ -293,14 +281,12 @@ export function DonateModal() {
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setOpen(false)} />
 
       <div className="relative z-10 w-full max-w-md border-2 border-[#FBBF24] bg-[#0a0e17] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Corner accents */}
         <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#FBBF24] pointer-events-none z-10" />
         <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#FBBF24] pointer-events-none z-10" />
         <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FBBF24] pointer-events-none z-10" />
         <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#FBBF24] pointer-events-none z-10" />
 
         <div className="overflow-y-auto p-8 space-y-5">
-          {/* Header */}
           <div className="flex items-start justify-between">
             <div>
               <h2 className="text-2xl font-black uppercase tracking-tight">
@@ -352,7 +338,6 @@ export function DonateModal() {
             </div>
           ) : (
             <>
-              {/* ── Network ── */}
               <div className="space-y-2.5">
                 <div className="flex items-center gap-2">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Network</p>
@@ -386,14 +371,12 @@ export function DonateModal() {
                 </div>
               </div>
 
-              {/* ── Token ── */}
               <div className="space-y-2.5">
                 <div className="flex items-center gap-2">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Token</p>
                   <div className="flex-1 h-px bg-white/5" />
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                  {/* Native coin */}
                   {(() => {
                     const native = net.native
                     const price = prices[native.geckoId]
@@ -416,7 +399,6 @@ export function DonateModal() {
                       </button>
                     )
                   })()}
-                  {/* Stablecoins */}
                   {(Object.keys(STABLECOINS) as StablecoinKey[]).map((t) => {
                     const active = token === t
                     const color = STABLECOINS[t].color
@@ -441,7 +423,6 @@ export function DonateModal() {
                 </div>
               </div>
 
-              {/* ── Amount ── */}
               <div className="space-y-2.5">
                 <div className="flex items-center gap-2">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Amount (USD)</p>
@@ -465,7 +446,6 @@ export function DonateModal() {
                     className="w-full pl-7 pr-3 py-2 bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FBBF24] focus:outline-none transition-colors"
                   />
                 </div>
-                {/* Confirm bar */}
                 <div className="flex items-center justify-between gap-3 border border-[#FBBF24]/20 bg-[#FBBF24]/5 px-3 py-2.5">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span>Sending</span>
@@ -496,7 +476,6 @@ export function DonateModal() {
                 )}
               </div>
 
-              {/* ── Identity ── */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Identity</p>
@@ -525,7 +504,6 @@ export function DonateModal() {
                 )}
               </div>
 
-              {/* ── Copy wallet fallback ── */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Or copy wallet address</p>

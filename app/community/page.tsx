@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default function CommunityPage() {
   return (
     <main>
-      {/* Hero */}
       <section className="relative py-24 md:py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -35,7 +34,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Artist Call-to-Action */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="relative overflow-hidden border-2 border-[#FBBF24]/30 bg-gradient-to-br from-[#FBBF24]/5 via-card to-card p-8 md:p-16">
@@ -94,7 +92,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Tournaments */}
       <section className="py-24 px-4 bg-card/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -156,7 +153,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Prize Pool */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -219,7 +215,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Community Benefits */}
       <section className="py-24 px-4 bg-card/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -246,7 +241,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-24 px-4">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight">

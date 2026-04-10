@@ -7,7 +7,6 @@ export function Footer() {
     <footer className="border-t border-[#FBBF24]/10 bg-[#060a12]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 overflow-hidden border-2 border-[#FBBF24]/50 bg-[#FBBF24]">
@@ -20,7 +19,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Links */}
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-[#FBBF24]">Navigate</h4>
             <div className="space-y-2">
@@ -31,7 +29,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Social / Steam */}
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-[#FBBF24]">Play</h4>
             <div className="space-y-2">
@@ -59,7 +56,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-[#FBBF24]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Pirate&apos;s Dual. All rights reserved.

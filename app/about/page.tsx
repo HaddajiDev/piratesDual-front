@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
-      {/* Hero */}
       <section className="relative py-24 md:py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -34,7 +33,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -74,7 +72,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values / Pillars */}
       <section className="py-24 px-4 bg-card/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -137,7 +134,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-24 px-4">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">

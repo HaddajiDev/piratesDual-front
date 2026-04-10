@@ -7,9 +7,7 @@ import { ReleaseCountdown } from "@/components/release-countdown"
 export default function HomePage() {
   return (
     <main>
-      {/* ===== HERO SECTION ===== */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/cover_2.png"
@@ -22,7 +20,6 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-8">
-          {/* Logo */}
           <div className="animate-float inline-block">
             <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto border-4 border-[#FBBF24] bg-[#FBBF24] shadow-2xl">
               <Image src="/heads.png" alt="Pirate's Dual Logo" fill className="object-contain p-2" priority />
@@ -58,7 +55,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
           <div className="w-6 h-10 border-2 border-[#FBBF24]/50 rounded-full flex justify-center">
             <div className="w-1.5 h-3 bg-[#FBBF24] rounded-full mt-2 animate-bounce" />
@@ -68,7 +64,6 @@ export default function HomePage() {
 
       
 
-      {/* ===== GAME FEATURES SECTION ===== */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -125,7 +120,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== GAME SHOWCASE ===== */}
       <section className="py-24 px-4 bg-card/50">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -172,33 +166,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== GAME TOURNAMENT SECTION ===== */}
       <section className="py-24 px-4 relative overflow-hidden">
-        {/* Animated background glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#FBBF24]/5 via-transparent to-[#FBBF24]/5" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FBBF24]/5 rounded-full blur-3xl animate-pulse" />
 
         <div className="relative max-w-5xl mx-auto">
           <div className="relative border-2 border-[#FBBF24] bg-gradient-to-br from-[#0a0e17] via-[#111827] to-[#0a0e17] p-8 md:p-16 overflow-hidden">
-            {/* Corner accents */}
             <div className="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-[#FBBF24]" />
             <div className="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-[#FBBF24]" />
             <div className="absolute bottom-0 left-0 w-24 h-24 border-b-4 border-l-4 border-[#FBBF24]" />
             <div className="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-[#FBBF24]" />
 
-            {/* Diagonal stripes decoration */}
             <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
               <div className="w-full h-full" style={{ background: "repeating-linear-gradient(45deg, #FBBF24, #FBBF24 2px, transparent 2px, transparent 20px)" }} />
             </div>
 
             <div className="relative z-10 text-center space-y-8">
-              {/* Coming Soon badge */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-[#FBBF24] text-black animate-pulse">
                 <span className="w-2 h-2 bg-black rounded-full" />
                 Coming Soon
               </div>
 
-              {/* Trophy icon */}
               <div className="flex justify-center">
                 <div className="w-20 h-20 md:w-24 md:h-24 border-2 border-[#FBBF24] bg-[#FBBF24]/10 flex items-center justify-center">
                   <svg className="w-10 h-10 md:w-12 md:h-12 text-[#FBBF24]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -216,7 +204,6 @@ export default function HomePage() {
                 Prove your skills in intense ship battles and climb the tournament ranks.
               </p>
 
-              {/* Prize highlights */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
                 <div className="p-6 border border-[#FBBF24]/30 bg-[#FBBF24]/5">
                   <div className="text-3xl md:text-4xl font-black text-[#FBBF24]">$$$</div>
@@ -234,7 +221,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Waitlist signup */}
               <div className="pt-4 space-y-4">
                 <p className="text-sm text-[#FBBF24] font-bold uppercase tracking-wider">
                   Join the waitlist — be first to compete
@@ -251,15 +237,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== ARTIST COMMUNITY SECTION ===== */}
       <section className="py-24 px-4 relative overflow-hidden">
-        {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-[#FBBF24]/5 to-purple-900/10" />
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FBBF24]/5 rounded-full blur-3xl" />
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Section header */}
           <div className="text-center mb-12 space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-purple-500/20 to-[#FBBF24]/20 text-[#FBBF24] border border-[#FBBF24]/30">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -277,13 +260,11 @@ export default function HomePage() {
           </div>
 
           <div className="relative border-2 border-purple-500/30 bg-gradient-to-br from-[#0a0e17] via-purple-950/20 to-[#0a0e17] p-8 md:p-12 overflow-hidden">
-            {/* Decorative corner elements */}
             <div className="absolute top-0 left-0 w-20 h-20 border-t-3 border-l-3 border-[#FBBF24]" />
             <div className="absolute top-0 right-0 w-20 h-20 border-t-3 border-r-3 border-[#FBBF24]" />
             <div className="absolute bottom-0 left-0 w-20 h-20 border-b-3 border-l-3 border-[#FBBF24]" />
             <div className="absolute bottom-0 right-0 w-20 h-20 border-b-3 border-r-3 border-[#FBBF24]" />
 
-            {/* Diagonal shimmer */}
             <div className="absolute inset-0 opacity-5">
               <div className="w-full h-full" style={{ background: "repeating-linear-gradient(-45deg, #FBBF24, #FBBF24 1px, transparent 1px, transparent 30px)" }} />
             </div>
@@ -338,14 +319,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== DONORS SECTION ===== */}
       <section className="py-24 px-4 relative overflow-hidden">
-        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#FBBF24]/3 via-transparent to-[#FBBF24]/3" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#FBBF24]/3 blur-3xl rounded-full" />
 
         <div className="relative max-w-5xl mx-auto space-y-12">
-          {/* Header */}
           <div className="text-center space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#FBBF24] border border-[#FBBF24]/30 bg-[#FBBF24]/5">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -366,10 +344,88 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== RELEASE COUNTDOWN SECTION ===== */}
       <ReleaseCountdown />
 
-      {/* ===== CTA SECTION ===== */}
+      <section className="py-24 sm:py-32 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-transparent to-emerald-900/10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-emerald-500/8 blur-3xl rounded-full animate-pulse" />
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]" style={{ background: "repeating-linear-gradient(-45deg, #10B981, #10B981 1px, transparent 1px, transparent 40px)" }} />
+
+        <div className="relative max-w-5xl mx-auto">
+          <div className="relative border-2 border-emerald-500/50 bg-gradient-to-br from-[#0a0e17] via-emerald-950/20 to-[#0a0e17] p-8 md:p-16 overflow-hidden">
+            <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-emerald-400" />
+            <div className="absolute top-0 right-0 w-20 h-20 border-t-4 border-r-4 border-emerald-400" />
+            <div className="absolute bottom-0 left-0 w-20 h-20 border-b-4 border-l-4 border-emerald-400" />
+            <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-emerald-400" />
+
+            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#FBBF24]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+            <div className="relative z-10 text-center space-y-8">
+              <div className="inline-flex items-center gap-2 px-5 py-2 text-xs font-black uppercase tracking-widest bg-emerald-500 text-black animate-pulse">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                </svg>
+                Big Announcement
+              </div>
+
+              <div className="space-y-4">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter">
+                  Going <span className="text-emerald-400">Free</span> Soon
+                </h2>
+                <div className="flex items-center justify-center gap-3">
+                  <div className="h-px flex-1 max-w-20 bg-gradient-to-r from-transparent to-emerald-500/40" />
+                  <span className="text-emerald-400 font-black text-2xl md:text-3xl tracking-tight">$0</span>
+                  <div className="h-px flex-1 max-w-20 bg-gradient-to-l from-transparent to-emerald-500/40" />
+                </div>
+              </div>
+
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Pirate&apos;s Dual will soon be <strong className="text-emerald-400">completely free to play</strong>.
+                No paywalls, no hidden costs — just pure pirate battles for everyone.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-4">
+                <div className="p-6 border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all group">
+                  <svg className="w-8 h-8 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                  </svg>
+                  <p className="text-sm font-black uppercase text-emerald-400">100% Free</p>
+                  <p className="text-xs text-muted-foreground mt-1">No purchase required</p>
+                </div>
+                <div className="p-6 border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all group">
+                  <svg className="w-8 h-8 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                  </svg>
+                  <p className="text-sm font-black uppercase text-emerald-400">No Paywalls</p>
+                  <p className="text-xs text-muted-foreground mt-1">Full game, zero restrictions</p>
+                </div>
+                <div className="p-6 border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all group">
+                  <svg className="w-8 h-8 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                  </svg>
+                  <p className="text-sm font-black uppercase text-emerald-400">For Everyone</p>
+                  <p className="text-xs text-muted-foreground mt-1">All pirates welcome aboard</p>
+                </div>
+              </div>
+
+              <a
+                href="https://store.steampowered.com/app/4214220/Pirates_Dual/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-wider border-2 border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all hover:scale-105"
+              >
+                <Image src="/steam.png" alt="Steam" width={20} height={20} />
+                Get It on Steam
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 px-4 bg-card/50">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight">

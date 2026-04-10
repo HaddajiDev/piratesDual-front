@@ -57,7 +57,6 @@ export default function ContactPage() {
 
   return (
     <main>
-      {/* Hero */}
       <section className="py-24 md:py-32 px-4">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <div className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-widest bg-[#FBBF24]/10 text-[#FBBF24] border border-[#FBBF24]/30">
@@ -73,11 +72,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form + Info */}
       <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Form */}
             <div className="lg:col-span-3">
               {submitted ? (
                 <div className="p-12 bg-card border-2 border-[#FBBF24]/30 text-center space-y-4">
@@ -200,7 +197,6 @@ export default function ContactPage() {
               )}
             </div>
 
-            {/* Info sidebar */}
             <div className="lg:col-span-2 space-y-8">
               <div className="p-8 bg-card border border-border space-y-6">
                 <h3 className="text-xl font-bold uppercase tracking-tight">Quick Info</h3>
