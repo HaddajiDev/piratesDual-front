@@ -99,7 +99,7 @@ export function ReleaseCountdown() {
           <div className="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-[#FBBF24]/40" />
         </div>
 
-        <
+        <a
           href="https://store.steampowered.com/app/4214220/Pirates_Dual/"
           target="_blank"
           rel="noopener noreferrer"
